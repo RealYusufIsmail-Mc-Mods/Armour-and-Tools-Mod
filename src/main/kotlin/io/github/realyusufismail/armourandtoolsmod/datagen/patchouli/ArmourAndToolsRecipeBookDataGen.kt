@@ -18,7 +18,10 @@
  */ 
 package io.github.realyusufismail.armourandtoolsmod.datagen.patchouli
 
+import com.khanhpham.patchoulidatagen.bookelement.BookCategory
 import com.khanhpham.patchoulidatagen.bookelement.BookElement
+import com.khanhpham.patchoulidatagen.bookelement.BookEntry
+import com.khanhpham.patchoulidatagen.bookelement.BookHeader
 import com.khanhpham.patchoulidatagen.provider.PatchouliBookProvider
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
 import java.util.concurrent.CompletableFuture
@@ -26,21 +29,57 @@ import java.util.function.Consumer
 import net.minecraft.data.CachedOutput
 import net.minecraft.data.DataGenerator
 import net.minecraft.network.chat.Component
+import net.minecraft.world.item.Items
 import net.minecraftforge.common.data.ExistingFileHelper
 
 class ArmourAndToolsRecipeBookDataGen(dataGen: DataGenerator, fileHelper: ExistingFileHelper) :
     PatchouliBookProvider(dataGen, fileHelper, "ArmourAndToolsRecipeBook", MOD_ID) {
 
     override fun run(pOutput: CachedOutput): CompletableFuture<*> {
-        TODO("Not yet implemented")
+        return super.m_213708_(pOutput)
     }
 
     override fun getName(): String {
-        TODO("Not yet implemented")
+        return super.m_6055_()
     }
 
-    override fun buildPages(consumer: Consumer<BookElement>?) {
-        TODO("Not yet implemented")
+    override fun buildPages(consumer: Consumer<BookElement>) {
+        val header: BookHeader =
+            BookHeader.Builder.header()
+                .enableI18n()
+                .setBookComponent(
+                    modid,
+                    translate("armourandtoolsmod_book.name"),
+                    translate("armourandtoolsmod_book.landing_text"))
+                .build(consumer)
+
+        val armourCategory: BookCategory =
+            BookCategory.Builder.category()
+                .bookHeader(header)
+                .setDisplay(
+                    Component.translatable("armour_category"),
+                    Component.translatable("armour_category.desc"),
+                    Items.DIAMOND_CHESTPLATE)
+                .save(consumer, "armour_category")
+
+        val toolsCategory: BookCategory =
+            BookCategory.Builder.category()
+                .bookHeader(header)
+                .setDisplay(
+                    Component.translatable("tools_category"),
+                    Component.translatable("tools_category.desc"),
+                    Items.DIAMOND_PICKAXE)
+                .save(consumer, "tools_category")
+
+        BookEntry.setup()
+            .category(armourCategory)
+            .display("Armour Entry", Items.DIAMOND_CHESTPLATE)
+            .build(consumer, "armour_entry")
+
+        BookEntry.setup()
+            .category(toolsCategory)
+            .display("Tools Entry", Items.DIAMOND_PICKAXE)
+            .build(consumer, "tools_entry")
     }
 
     private fun translate(key: String): Component {
