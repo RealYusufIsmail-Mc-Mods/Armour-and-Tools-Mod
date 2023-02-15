@@ -28,8 +28,9 @@ import net.minecraft.data.DataGenerator
 import net.minecraft.network.chat.Component
 import net.minecraftforge.common.data.ExistingFileHelper
 
-class PatchouliDataGen(dataGen: DataGenerator, fileHelper: ExistingFileHelper, bookName: String) :
-    PatchouliBookProvider(dataGen, fileHelper, bookName, MOD_ID) {
+class ArmourAndToolsRecipeBookDataGen(dataGen: DataGenerator, fileHelper: ExistingFileHelper) :
+    PatchouliBookProvider(dataGen, fileHelper, "ArmourAndToolsRecipeBook", MOD_ID) {
+
     override fun run(pOutput: CachedOutput): CompletableFuture<*> {
         TODO("Not yet implemented")
     }
