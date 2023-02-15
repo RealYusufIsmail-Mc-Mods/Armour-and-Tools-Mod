@@ -141,7 +141,8 @@ dependencies {
     // Patchouli
     compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
-    implementation("com.github.RealYusufIsmail-Mc-Mods:PatchouliDataGen:1.0.0")
+    // Patchouli DataGen
+    implementation("com.github.RealYusufIsmail-Mc-Mods:PatchouliDataGen:1.19.3-SNAPSHOT")
 }
 
 tasks.test {
