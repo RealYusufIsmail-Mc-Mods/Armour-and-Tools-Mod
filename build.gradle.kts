@@ -118,6 +118,7 @@ sourceSets.main { resources.srcDir("src/generated/resources") }
 repositories {
     maven { url = uri("https://thedarkcolour.github.io/KotlinForForge/") }
     maven { url = uri("https://maven.blamejared.com") }
+    maven { url = uri("https://www.cursemaven.com/") }
     mavenCentral()
 }
 
@@ -140,6 +141,7 @@ dependencies {
     // Patchouli
     compileOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78:api"))
     runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:1.19.3-78"))
+    implementation(fg.deobf("curse.maven:patchouli-datagen-ptd-lib-585667:4399634"))
 }
 
 tasks.test {
