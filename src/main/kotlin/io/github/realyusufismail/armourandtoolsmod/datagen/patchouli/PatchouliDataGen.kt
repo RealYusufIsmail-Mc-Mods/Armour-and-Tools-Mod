@@ -22,8 +22,10 @@ import com.khanhpham.patchoulidatagen.bookelement.BookCategory
 import com.khanhpham.patchoulidatagen.bookelement.BookElement
 import com.khanhpham.patchoulidatagen.bookelement.BookEntry
 import com.khanhpham.patchoulidatagen.bookelement.BookHeader
+import com.khanhpham.patchoulidatagen.pages.pagetype.defaults.CraftingRecipePage
 import com.khanhpham.patchoulidatagen.provider.PatchouliBookProvider
 import io.github.realyusufismail.armourandtoolsmod.MOD_ID
+import io.github.realyusufismail.armourandtoolsmod.core.init.BlockInit
 import java.util.function.Consumer
 import net.minecraft.data.DataGenerator
 import net.minecraft.network.chat.Component
@@ -60,9 +62,15 @@ class PatchouliDataGen(dataGen: DataGenerator, fileHelper: ExistingFileHelper) :
                     Items.DIAMOND_PICKAXE)
                 .save(consumer, "tools_category")
 
+        val armourCrafting: CraftingRecipePage =
+            CraftingRecipePage.setup()
+                .mainRecipe(BlockInit.CUSTOM_ARMOUR_CRAFTING_TABLE.get())
+                .build()
+
         BookEntry.setup()
             .category(armourCategory)
             .display("Armour Entry", Items.DIAMOND_CHESTPLATE)
+            .addPage(armourCrafting)
             .build(consumer, "armour_entry")
 
         BookEntry.setup()
